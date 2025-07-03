@@ -3,7 +3,7 @@
 {
   home.stateVersion = "23.11";
 
-  # Global packages
+  # 📦 Global packages
   home.packages = with pkgs; [
     fzf
     neovim
@@ -12,11 +12,10 @@
     fd
     nodejs
     python3
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    nerd-fonts.fira-code
   ];
 
-
-  #ZSH CONFIG
+  # 🐚 Zsh configuration
   programs.zsh = {
     enable = true;
     ohMyZsh = {
@@ -24,9 +23,6 @@
       theme = "robbyrussell";
       plugins = [
         "git"
-        "zsh-autosuggestions"
-        "fast-syntax-highlighting"
-        "zsh-autocomplete"
         "fzf"
         "docker"
         "colored-man-pages"
@@ -35,18 +31,18 @@
     };
   };
 
-  # Shell aliases
-  shellAliases = {
-      vim = "nvim";
-      f = "fzf";
-    };
+  # ⚡ Shell aliases
+  programs.zsh.shellAliases = {
+    vim = "nvim";
+    f = "fzf";
+  };
 
-
-  # ENV variables
+  # 🛠️ Environment variables
   home.sessionVariables = {
     EDITOR = "nvim";
   };
 
+  # 📄 Dotfiles
   home.file.".zshrc".source = ./zshrc;
   home.file.".tmux.conf".source = ./tmux.conf;
 }
