@@ -15,15 +15,13 @@
 
   outputs = { self, nixpkgs, home-manager, nvim-config, ... }:
     let
-      systems = [ "x86_64-linux" "aarch64-darwin" ];
+      system = "x86_64-linux"; # Cambia si estás en Mac
+      pkgs = import nixpkgs { inherit system; };
     in
     {
-      homeConfigurations = nixpkgs.lib.genAttrs systems (system:
-        username:
-          let
-            pkgs = import nixpkgs { inherit system; };
-          in
-          fpedraza = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations = {
+        # Aquí defines tu username
+        fpedraza = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 
           modules = [
@@ -36,5 +34,6 @@
           username = "fpedraza";
           homeDirectory = "/home/fpedraza";
         };
+      };
     };
 }
