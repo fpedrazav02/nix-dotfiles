@@ -31,6 +31,8 @@ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 git clone https://github.com/fpedrazav02/nix-dotfiles.git
 ```
 
+- Cd into the project after cloning
+
 ### 2️⃣ Initialize Home Manager (only the first time):
 
 If you have never installed Home Manager on this machine, run:
