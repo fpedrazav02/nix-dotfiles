@@ -78,9 +78,4 @@
 
   # 📄 Dotfiles
   home.file.".tmux.conf".source = ./tmux.conf;
-
-  # 🛡️ Strip CR (^M) from .zshrc after writing
-  home.activation.fixZshrc = ''
-    sed -i 's/\r$//' "${config.home.homeDirectory}/.zshrc"
-  '';
 }
