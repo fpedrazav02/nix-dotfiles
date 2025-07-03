@@ -45,7 +45,5 @@
   # 📄 Dotfiles configuration
   # This expects that you have the files in the same folder as home.nix
   home.file.".zshrc".source = ./zshrc;
-  home.file.".p10k.zsh".source = ./p10k.zsh;
-  home.file.".tmux.conf".source = ./tmux.conf;
 
 }
