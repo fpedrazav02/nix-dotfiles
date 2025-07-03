@@ -6,6 +6,7 @@
 
   # 📦 Global packages
   home.packages = with pkgs; [
+    exa
     fzf
     neovim
     tmux
@@ -67,6 +68,7 @@
       f   = "fzf";
       gs  = "git status";
       ll  = "ls -alh";
+      ls  = "exa --group-directories-first --icons --color=auto";
     };
     history.size = 10000;
   };
