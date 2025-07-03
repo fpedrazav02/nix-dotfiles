@@ -15,24 +15,26 @@
 
   outputs = { self, nixpkgs, home-manager, nvim-config, ... }:
     let
-      system = "x86_64-linux"; # Cambia si estás en Mac
+      system = "x86_64-linux"; # Change for diferent OS
       pkgs = import nixpkgs { inherit system; };
     in
     {
       homeConfigurations = {
-        # Aquí defines tu username
         fpedraza = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 
+          # Módulos
           modules = [
             ./home.nix
             {
+              # Define username and homeDirectory
+              home.username = "fpedraza";
+              home.homeDirectory = "/home/fpedraza";
+
+              # Neovim external repo
               home.file.".config/nvim".source = nvim-config;
             }
           ];
-
-          username = "fpedraza";
-          homeDirectory = "/home/fpedraza";
         };
       };
     };
