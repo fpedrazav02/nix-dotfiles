@@ -78,6 +78,10 @@
     EDITOR = "nvim";
   };
 
+  home.activation.fixZshrc = ''
+      sed -i 's/\r$//' "${config.home.homeDirectory}/.zshrc"
+    '';
+
   # 📄 Dotfiles
   home.file.".tmux.conf".source = ./tmux.conf;
 }
