@@ -23,21 +23,18 @@
           let
             pkgs = import nixpkgs { inherit system; };
           in
-          home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
+          fpedraza = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
 
-            modules = [
-              ./home.nix
-              {
-                home.file.".config/nvim".source = nvim-config;
-              }
-            ];
+          modules = [
+            ./home.nix
+            {
+              home.file.".config/nvim".source = nvim-config;
+            }
+          ];
 
-            username = username;
-            homeDirectory = if pkgs.stdenv.isDarwin
-              then "/Users/${username}"
-              else "/home/${username}";
-          }
-      );
+          username = "fpedraza";
+          homeDirectory = "/home/fpedraza";
+        };
     };
 }
