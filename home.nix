@@ -15,6 +15,7 @@
     python3            # Python 3 interpreter
     nerd-fonts.fira-code  # FiraCode Nerd Font
     zsh                # Z shell
+    lazygit            # Lazygit 
   ];
 
   # 🐚 Zsh configuration
