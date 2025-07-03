@@ -68,7 +68,7 @@
       f   = "fzf";
       gs  = "git status";
       ll  = "ls -alh";
-      ls  = "lsd --group-directories-first --icons --color=auto";
+      ls  = "lsd";
     };
     history.size = 10000;
   };
