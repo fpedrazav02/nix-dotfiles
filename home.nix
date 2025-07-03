@@ -27,6 +27,14 @@
     autosuggestion.enable = true;          # Suggest commands as you type
     syntaxHighlighting.enable = true;      # Highlight command syntax
 
+    initExtra = ''
+      zle -N insert-unambiguous-or-complete true
+      zle -N menu-search              true
+      zle -N recent-paths             true
+
+      source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    '';
+
     plugins = [
       {
         name = "zsh-autocomplete";         # Advanced autocompletion
@@ -73,4 +81,8 @@
 
   # 📄 Dotfile: tmux.conf in this repository
   home.file.".tmux.conf".source = ./tmux.conf;
+
+  home.activation.fixZshrc = lib.hm.dag.runAfter [ "writeFiles" ] ''
+    sed -i 's/\r$//' "${config.home.homeDirectory}/.zshrc"
+  '';
 }
