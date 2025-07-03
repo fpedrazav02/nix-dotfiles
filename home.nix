@@ -6,44 +6,57 @@
 
   # 📦 Global packages to install for the user
   home.packages = with pkgs; [
-    fzf                            # Fuzzy finder
-    neovim                         # Modern Vim
-    tmux                           # Terminal multiplexer
-    ripgrep                        # Fast grep alternative
-    fd                             # User-friendly find
-    nodejs                         # JavaScript runtime
-    python3                        # Python 3 interpreter
-    nerd-fonts.fira-code           # FiraCode Nerd Font for Powerlevel10k
-    zsh                            # Z shell
-    zsh-autosuggestions            # Suggest commands as you type
-    zsh-autocomplete               # Advanced autocompletion
-    zsh-syntax-highlighting        # Syntax highlighting for commands
-    zsh-powerlevel10k              # Powerlevel10k prompt theme
+    fzf                # Fuzzy finder
+    neovim             # Modern Vim
+    tmux               # Terminal multiplexer
+    ripgrep            # Fast grep
+    fd                 # Friendly find
+    nodejs             # JavaScript runtime
+    python3            # Python 3 interpreter
+    nerd-fonts.fira-code  # FiraCode Nerd Font
+    zsh                # Z shell
   ];
 
   # 🐚 Zsh configuration
   programs.zsh = {
-    enable = true;                      # Enable Zsh as shell
-    enableCompletion = true;            # Enable Zsh completion system
-    autosuggestions.enable = true;      # Enable autosuggestions
-    syntaxHighlighting.enable = true;   # Enable syntax highlighting
+    enable = true;              # Enable Zsh
+    enableCompletion = true;    # Enable completions
 
-    # Shell aliases
+    # ✨ Plugins for better UX
+    autosuggestion.enable = true;          # Suggest commands as you type
+    syntaxHighlighting.enable = true;      # Highlight command syntax
+
+    plugins = [
+      {
+        name = "zsh-autocomplete";         # Advanced autocompletion
+        src = pkgs.fetchFromGitHub {
+          owner = "marlonrichert";
+          repo = "zsh-autocomplete";
+          rev = "762afacbf227ecd173e899d10a28a478b4c84a3f";
+          sha256 = "1357hygrjwj5vd4cjdvxzrx967f1d2dbqm2rskbz5z1q6jri1hm3";
+        };
+      }
+    ];
+
+    # 📝 Shell aliases
     shellAliases = {
-      vim = "nvim";                     # Use Neovim when typing 'vim'
-      f = "fzf";                        # Short alias for fzf
-      gs = "git status";                # Git status shortcut
-      ll = "ls -alh";                   # Better ls
+      vim = "nvim";
+      f = "fzf";
+      gs = "git status";
+      ll = "ls -alh";
+    };
+
+    # ⏳ History settings
+    history = {
+      size = 10000;
     };
   };
 
   # 🛠️ Environment variables
   home.sessionVariables = {
-    EDITOR = "nvim";                    # Default editor
+    EDITOR = "nvim";
   };
 
-  # 📄 Dotfiles configuration
-  # This expects that you have the files in the same folder as home.nix
-  home.file.".zshrc".source = ./zshrc;
-
+  # 📄 Dotfile: tmux.conf in this repository
+  home.file.".tmux.conf".source = ./tmux.conf;
 }
