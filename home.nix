@@ -17,6 +17,15 @@
     nerd-fonts.fira-code
     zsh
     lazygit
+    
+    # Formatters
+    black
+    isort
+    prettier
+
+    # LSPs
+    basedpyright
+    typescript-language-server
   ];
 
   # 🐚 Zsh configuration
@@ -37,7 +46,13 @@
 
       # Source syntax highlighter at the very end
       source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+      source ${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh
     '';
+
+    loginExtra = ''
+        source ${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh
+    '';
+
 
     # 📦 External plugins loaded by Home Manager
     plugins = [
@@ -86,8 +101,8 @@
   home.file.".tmux.conf".source = ./tmux.conf;
 
   home.file.".config/nvim".source = builtins.fetchGit {
-  url = "https://github.com/fpedrazav02/nvim-dotfiles.git";
-  rev = "e05c243031ec165b60c6d283b2293ce67bc6ddc4";  # Exact commit to pull
+    url = "https://github.com/fpedrazav02/nvim-dotfiles.git";
+    rev = "f26adae9b81720e3bce5292ff56c26ed0381be26";  # Exact commit to pull
   };
 
 }
