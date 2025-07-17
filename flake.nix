@@ -5,12 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Neovim external repo
-    nvim-config = {
-      url = "github:fpedrazav02/nvim-dotfiles";
-      flake = false;
-    };
   };
 
   outputs = { self, nixpkgs, home-manager, nvim-config, ... }:
@@ -30,9 +24,6 @@
               # Define username and homeDirectory
               home.username = "fpedraza";
               home.homeDirectory = "/home/fpedraza";
-
-              # Neovim external repo
-              home.file.".config/nvim".source = nvim-config;
             }
           ];
         };
