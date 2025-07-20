@@ -14,6 +14,7 @@
     fd
     nodejs
     python3
+    uv
     nerd-fonts.fira-code
     zsh
     lazygit
