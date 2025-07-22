@@ -103,7 +103,7 @@
 
   home.file.".config/nvim".source = builtins.fetchGit {
     url = "https://github.com/fpedrazav02/nvim-dotfiles.git";
-    rev = "f26adae9b81720e3bce5292ff56c26ed0381be26";  # Exact commit to pull
+    rev = "e7804fa9cf14da72768e7e763b9fe42bb4093a36";  # Exact commit to pull
   };
 
 }
