@@ -36,8 +36,6 @@
     # LSPs
     basedpyright
     typescript-language-server
-    clangd
-
   ];
 
   # 🐚 Zsh configuration
