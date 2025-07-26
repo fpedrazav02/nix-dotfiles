@@ -12,12 +12,21 @@
     tmux
     ripgrep
     fd
-    nodejs
-    python3
     uv
     nerd-fonts.fira-code
     zsh
     lazygit
+
+    # Languages
+    nodejs
+    python3
+
+    # C/C++
+    gcc
+    gnumake42
+    gdb
+    clang-tools
+    
     
     # Formatters
     black
@@ -27,6 +36,8 @@
     # LSPs
     basedpyright
     typescript-language-server
+    clangd
+
   ];
 
   # 🐚 Zsh configuration
@@ -103,7 +114,7 @@
 
   home.file.".config/nvim".source = builtins.fetchGit {
     url = "https://github.com/fpedrazav02/nvim-dotfiles.git";
-    rev = "e7804fa9cf14da72768e7e763b9fe42bb4093a36";  # Exact commit to pull
+    rev = "5b31caa536eb505cb836330d628b5cce1064c023";  # Exact commit to pull
   };
 
 }
