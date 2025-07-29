@@ -16,6 +16,7 @@
     nerd-fonts.fira-code
     zsh
     lazygit
+    yazi
 
     # Languages
     nodejs
