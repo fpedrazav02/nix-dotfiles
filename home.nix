@@ -112,9 +112,4 @@
   # 📄 Dotfiles
   home.file.".tmux.conf".source = ./tmux.conf;
 
-  home.file.".config/nvim".source = builtins.fetchGit {
-    url = "https://github.com/fpedrazav02/nvim-dotfiles.git";
-    rev = "8dffb1bc10144a3938866d7b15127c051415ec38";  # Exact commit to pull
-  };
-
 }
