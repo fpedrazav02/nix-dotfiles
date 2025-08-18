@@ -13,7 +13,7 @@
     ripgrep
     fd
     uv
-    nerd-fonts.fira-code
+    nerd-fonts.code-new-roman
     zsh
     lazygit
     yazi
