@@ -9,7 +9,7 @@
 
   outputs = { self, nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-linux"; # Change for diferent OS
+      system = "x86_64-darwin"; # Change for diferent OS
       pkgs = import nixpkgs { inherit system; };
     in
     {
@@ -23,7 +23,7 @@
             {
               # Define username and homeDirectory
               home.username = "fpedraza";
-              home.homeDirectory = "/home/fpedraza";
+              home.homeDirectory = "/Users/fpedraza";
             }
           ];
         };
