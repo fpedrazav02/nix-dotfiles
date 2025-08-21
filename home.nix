@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:  # <-- Añadimos "lib" aquí
+{ config, pkgs, lib, ... }:
 
 {
   # 🎯 Required by Home Manager
@@ -8,7 +8,6 @@
   home.packages = with pkgs; [
     lsd
     fzf
-    neovim
     tmux
     ripgrep
     fd
@@ -50,7 +49,7 @@
     syntaxHighlighting.enable = true;
 
     # 🛠️ Manual extra initialization
-    initExtra = ''
+    initContent = ''
       # Stub missing ZLE widgets
       zle -N insert-unambiguous-or-complete true
       zle -N menu-search              true
@@ -105,6 +104,9 @@
     EDITOR = "nvim";
   };
 
+   home.sessionPath = [
+    "/Users/frjpedra/.toolbox/bin"
+  ];
   home.activation.fixZshrc = ''
       sed -i 's/\r$//' "${config.home.homeDirectory}/.zshrc"
     '';
