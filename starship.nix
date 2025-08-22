@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{ lib, config, ... }: let
   icons = {
     aws.symbol = "  ";
     buf.symbol = " ";
@@ -49,9 +45,9 @@
     swift.symbol = " ";
     zig.symbol = " ";
     gradle.symbol = " ";
-    directory.read_only = " 󰌾";
-    hostname = {ssh_symbol = " ";};
-    git_commit = {tag_symbol = " ";};
+    directory.read_only = "󰌾";
+    hostname = { ssh_symbol = " "; };
+    git_commit = { tag_symbol = " "; };
     os.symbols = {
       Alpaquita = " ";
       Alpine = " ";
@@ -106,16 +102,135 @@ in {
   config = lib.mkIf config.modules.development.starship.enable {
     programs.starship = {
       enable = true;
-      settings =
-        lib.recursiveUpdate
-        {
-          direnv = {
-            disabled = false;
-            format = ''[$symbol$loaded]($style) '';
-          };
-          nix_shell.format = ''via [$symbol$state]($style) '';
-        }
-        icons;
+
+      settings = lib.recursiveUpdate {
+        format = "$ssh$directory$git_branch$git_status$aws$gcloud$nodejs$python$ruby$rust$golang$java$lua$haskell$scala$php$elixir$dart$deno$swift$c$cpp$zig$nix_shell$line_break$character";
+        add_newline = false;
+
+        directory = {
+          truncation_length = 1;
+          read_only = "󰌾";
+          format = "[$path]($style) ";
+          style = "blue bold";
+        };
+
+        ssh = {
+          symbol = " ";
+          format = "[$symbol]($style) ";
+          style = "green";
+        };
+
+        git_branch = {
+          symbol = " ";
+          format = "[$symbol$branch]($style) ";
+        };
+
+        git_status = {
+          format = "([$all_status$ahead_behind]($style)) ";
+        };
+
+        nix_shell = {
+          symbol = " ";
+          format = "[$symbol]($style) ";
+        };
+
+        direnv = {
+          disabled = false;
+          format = "[$symbol$loaded]($style) ";
+        };
+
+        # Formatos por lenguaje con versión
+        nodejs = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        python = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        ruby = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        rust = {
+          symbol = "󱘗 ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        golang = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        java = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        lua = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        haskell = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        scala = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        php = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        elixir = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        dart = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        deno = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        swift = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        c = {
+          symbol = " ";
+          format = "[$symbol]($style)";
+        };
+
+        cpp = {
+          symbol = " ";
+          format = "[$symbol]($style)";
+        };
+
+        zig = {
+          symbol = " ";
+          format = "[$symbol($version )]($style)";
+        };
+
+        character = {
+          success_symbol = "[➜](bold green)";
+          error_symbol = "[✗](bold red)";
+        };
+      } icons;
+
       enableZshIntegration = config.modules.development.zsh.enable;
     };
   };
