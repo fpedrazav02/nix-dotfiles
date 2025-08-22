@@ -15,7 +15,8 @@
     nerd-fonts.code-new-roman
     zsh
     lazygit
-    yazi
+    direnv
+
 
     # Languages
     nodejs
@@ -32,6 +33,7 @@
     black
     isort
     prettier
+    stylua
 
     # LSPs
     basedpyright
