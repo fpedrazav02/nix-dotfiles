@@ -107,7 +107,7 @@
   };
 
    home.sessionPath = [
-    "/Users/frjpedra/.toolbox/bin"
+    "/Users/frjpedra/.bin/"
   ];
   home.activation.fixZshrc = ''
       sed -i 's/\r$//' "${config.home.homeDirectory}/.zshrc"
