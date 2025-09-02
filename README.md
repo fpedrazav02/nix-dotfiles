@@ -47,7 +47,7 @@ git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 If you have never installed Home Manager on this machine, run:
 
 ```bash
-nix run home-manager/master -- init
+nix run nixpkgs#home-manager/master -- switch --flake .
 ```
 
 If `home-manager` is lost due to path issues. You may reinstall it:
@@ -75,3 +75,4 @@ After the initial setup, you can re-apply your configuration with:
 ```bash
 home-manager switch --flake .#<username>
 ```
+
