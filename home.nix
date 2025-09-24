@@ -38,8 +38,7 @@
       vim = "nvim";
       f   = "fzf";
       gs  = "git status";
-      ls  = "lsd";
-      ll  = "lsd -alh";
+      ll  = "ls -alh";
     };
 
     history.size = 10000;
@@ -77,26 +76,22 @@
   };
 
   home.packages = with pkgs; [
-    # TERM PKGS
-    lsd
+	#EDITOR
+	helix
+	lazygit
+	yazi
+	
+    # TERMINAL PKGS
     fzf
     tmux
     ripgrep
-	blesh
     fd
     uv
     nerd-fonts.code-new-roman
-    lazygit
 
 	# LANG
     nodejs_20
     python3
-
-	# C / C++
-    gcc
-    gnumake
-    gdb
-    clang-tools
 
     # TOOLING
     black
@@ -108,10 +103,11 @@
     basedpyright
     typescript-language-server
     lua-language-server
+	nixd
   ];
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "hx";
     SHELL  = "${pkgs.zsh}/bin/zsh";
   };
 
