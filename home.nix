@@ -104,6 +104,7 @@
     typescript-language-server
     lua-language-server
 	nixd
+	nil
   ];
 
   home.sessionVariables = {
