@@ -101,6 +101,7 @@
 
 	# LSP
     basedpyright
+	marksman
     typescript-language-server
     lua-language-server
 	nixd
