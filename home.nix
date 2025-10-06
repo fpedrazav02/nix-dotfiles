@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   home.stateVersion = "23.11";
@@ -11,11 +16,11 @@
     syntaxHighlighting.enable = true;
 
     initContent = ''
-      _noop() { :; }
-      zle -N insert-unambiguous-or-complete _noop
-      zle -N menu-search _noop
-      zle -N recent-paths _noop
-	  export TERM=xterm-256color
+            _noop() { :; }
+            zle -N insert-unambiguous-or-complete _noop
+            zle -N menu-search _noop
+            zle -N recent-paths _noop
+      	    export TERM=xterm-256color
     '';
 
     loginExtra = ''
@@ -26,9 +31,9 @@
       {
         name = "zsh-autocomplete";
         src = pkgs.fetchFromGitHub {
-          owner  = "marlonrichert";
-          repo   = "zsh-autocomplete";
-          rev    = "762afacbf227ecd173e899d10a28a478b4c84a3f";
+          owner = "marlonrichert";
+          repo = "zsh-autocomplete";
+          rev = "762afacbf227ecd173e899d10a28a478b4c84a3f";
           sha256 = "1357hygrjwj5vd4cjdvxzrx967f1d2dbqm2rskbz5z1q6jri1hm3";
         };
       }
@@ -36,9 +41,9 @@
 
     shellAliases = {
       vim = "nvim";
-      f   = "fzf";
-      gs  = "git status";
-      ll  = "ls -alh";
+      f = "fzf";
+      gs = "git status";
+      ll = "ls -alh";
     };
 
     history.size = 10000;
@@ -55,11 +60,27 @@
       else
         export TERM=xterm-256color
       fi
-
-      if [[ $- == *i* ]]; then
-		source ${pkgs.blesh}/share/blesh/ble.sh
-      fi
     '';
+  };
+
+  programs.git = {
+    enable = true;
+    extraConfig = {
+      pager = {
+        diff = "delta";
+        log = "delta";
+        reflog = "delta";
+        show = "delta";
+      };
+      delta = {
+        side-by-side = true;
+        line-numbers = true;
+        dark = true;
+        navigate = true;
+        hyperlinks = true;
+        "hyperlinks-file-link-format" = "lazygit-edit://{path}:{line}";
+      };
+    };
   };
 
   programs.starship = {
@@ -76,11 +97,12 @@
   };
 
   home.packages = with pkgs; [
-	#EDITOR
-	helix
-	lazygit
-	yazi
-	
+    #EDITOR
+    helix
+    lazygit
+    yazi
+    delta
+
     # TERMINAL PKGS
     fzf
     tmux
@@ -89,7 +111,7 @@
     uv
     nerd-fonts.code-new-roman
 
-	# LANG
+    # LANG
     nodejs_20
     python3
 
@@ -99,18 +121,17 @@
     prettier
     stylua
 
-	# LSP
+    # LSP
     basedpyright
-	marksman
+    marksman
     typescript-language-server
-    lua-language-server
-	nixd
-	nil
+    nixd
+    nil
   ];
 
   home.sessionVariables = {
     EDITOR = "hx";
-    SHELL  = "${pkgs.zsh}/bin/zsh";
+    SHELL = "${pkgs.zsh}/bin/zsh";
   };
 
   home.sessionPath = [
@@ -122,5 +143,31 @@
     sed -i 's/\r$//' "${config.home.homeDirectory}/.zshrc" || true
   '';
 
-  home.file.".tmux.conf".source = ./tmux.conf;
+  home.file =
+    let
+      lazygitConfigPath =
+        if pkgs.stdenv.isDarwin then
+          "Library/Application Support/lazygit/config.yml"
+        else
+          ".config/lazygit/config.yml";
+    in
+    {
+      "${lazygitConfigPath}".text = ''
+        customCommands:
+        - key: "E"
+          output: terminal
+          context: "files"
+          command: "git diff {{.SelectedFile.Name}} | delta --side-by-side --line-numbers --dark --paging=always"
+          description: "Open diff in full Delta view"
+                   
+        gui:
+          sidePanelWidth: 0.2
+        git:
+          paging:
+            colorArg: never
+            pager: delta --side-by-side --line-numbers --paging=never --dark --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+      '';
+
+      ".tmux.conf".source = ./tmux.conf;
+    };
 }
