@@ -37,8 +37,13 @@ git clone https://github.com/fpedrazav02/nix-dotfiles.git
 
 If you have never installed Home Manager on this machine, run:
 
+#### cmd
 ```bash
-nix run nixpkgs#home-manager -- switch --flake .
+nix run nixpkgs#home-manager -- switch --flake .#<username>@<target-so>
 ```
 
+#### example
+```bash
+nix run nixpkgs#home-manager -- switch --flake .#fpedraza@x86_64-darwin
+```
 
