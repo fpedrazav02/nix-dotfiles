@@ -33,9 +33,10 @@ git clone https://github.com/fpedrazav02/nix-dotfiles.git
 
 - Cd into the project after cloning
 
-### Initialize Home Manager (only the first time):
+### Update the target user in the flake.nix file:
+> This is important! This allows your username to be the target of the configuration.
 
-If you have never installed Home Manager on this machine, run:
+### Run Home Manager:
 
 #### cmd
 ```bash
@@ -46,5 +47,6 @@ nix run nixpkgs#home-manager -- switch --flake .#<username>@<target-so>
 ```bash
 nix run nixpkgs#home-manager -- switch --flake .#$(whoami)@x86_64-darwin
 ```
+
 
 
