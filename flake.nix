@@ -42,15 +42,12 @@
     in
     {
       homeConfigurations = builtins.listToAttrs (
-        builtins.concatMap (system: [
-          {
-            name = "fpedraza@${system}";
-            value = mkHome {
-              inherit system;
-              username = "fpedraza";
-            };
-          }
-        ]) systems
+        builtins.concatMap (system:
+          map (username: {
+            name = "${username}@${system}";
+            value = mkHome { inherit system username; };
+          }) [ (builtins.getEnv "USER") ]
+        ) systems
       );
     };
 }
