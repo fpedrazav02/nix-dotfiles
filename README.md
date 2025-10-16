@@ -44,6 +44,7 @@ nix run nixpkgs#home-manager -- switch --flake .#<username>@<target-so>
 
 #### example
 ```bash
-nix run nixpkgs#home-manager -- switch --flake .#fpedraza@x86_64-darwin
+nix run nixpkgs#home-manager -- switch --flake .#$(whoami)@x86_64-darwin
 ```
+
 
