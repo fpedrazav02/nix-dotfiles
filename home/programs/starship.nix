@@ -119,9 +119,10 @@ in
         style = "blue bold";
       };
 
-      ssh = {
-        symbol = " ";
-        format = "[$symbol]($style) ";
+      hostname = {
+        ssh_only = true;
+        format = "[$ssh_symbol]($style) ";
+        ssh_symbol = " ";
         style = "green";
       };
 
@@ -225,7 +226,7 @@ in
       };
 
       character = {
-        success_symbol = "[➜](bold green)";
+        success_symbol = "[➜ ](bold green)";
         error_symbol = "[✗](bold red)";
       };
     } icons;

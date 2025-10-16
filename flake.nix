@@ -1,29 +1,17 @@
 {
-  description = "Fpedrazav02 Home Manager config";
+  description = "Dynamic Home Manager config (user@system)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }:
+    { nixpkgs, home-manager, ... }:
     let
-      systems = [
-        "x86_64-linux"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
-      ];
-
       mkHome =
-        { system, username }:
+        { username, system }:
         let
           pkgs = import nixpkgs { inherit system; };
           homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
@@ -36,17 +24,29 @@
               home.username = username;
               home.homeDirectory = homeDirectory;
               home.stateVersion = "25.05";
+              programs.home-manager.enable = true;
             }
           ];
         };
+
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+
+      # Change username
+      usernames = [ "fpedraza" ];
     in
     {
       homeConfigurations = builtins.listToAttrs (
-        builtins.concatMap (system:
+        builtins.concatMap (
+          system:
           map (username: {
             name = "${username}@${system}";
-            value = mkHome { inherit system username; };
-          }) [ (builtins.getEnv "USER") ]
+            value = mkHome { inherit username system; };
+          }) usernames
         ) systems
       );
     };
