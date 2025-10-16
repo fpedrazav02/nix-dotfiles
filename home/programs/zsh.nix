@@ -6,6 +6,15 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
 
+    autosuggestion = {
+      enable = true;
+      strategy = [
+        "match_prev_cmd"
+        "completion"
+        "history"
+      ];
+    };
+
     shellAliases = {
       ll = "ls -l";
       y = "yazi";
