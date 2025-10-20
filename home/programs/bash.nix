@@ -5,9 +5,7 @@
     enable = true;
 
     bashrcExtra = ''
-      if [ -x "${pkgs.zsh}/bin/zsh" ]; then
-        exec ${pkgs.zsh}/bin/zsh
-      fi
+      alias zsh=${pkgs.zsh}/bin/zsh
     '';
   };
 }

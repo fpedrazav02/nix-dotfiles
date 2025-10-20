@@ -19,6 +19,7 @@
       ll = "ls -l";
       y = "yazi";
       z = "zellij";
+      za = "zellij attach";
     };
     history.size = 10000;
   };

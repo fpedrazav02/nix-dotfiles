@@ -6,7 +6,6 @@
     helix
     lazygit
     yazi
-    delta
 
     # TERMINAL PKGS
     fzf
