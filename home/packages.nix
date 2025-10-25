@@ -13,6 +13,8 @@
     fd
     uv
     nerd-fonts.code-new-roman
+    bat
+    lsd
 
     # LANG
     nodejs_20
