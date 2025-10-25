@@ -20,6 +20,7 @@
       y = "yazi";
       z = "zellij";
       za = "zellij attach";
+      cat = "bat";
     };
     history.size = 10000;
   };
