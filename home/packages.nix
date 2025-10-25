@@ -30,5 +30,7 @@
     typescript-language-server
     nixd
     nil
+    marksman
+    markdown-oxide
   ];
 }
