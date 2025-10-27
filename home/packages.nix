@@ -19,6 +19,7 @@
 
     # LANG
     nodejs_20
+    nodePackages.aws-cdk
     python3
 
     # TOOLING
