@@ -20,6 +20,7 @@
     # LANG
     nodejs_20
     python3
+    typescript
 
     # TOOLING
     black
