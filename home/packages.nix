@@ -15,6 +15,7 @@
     nerd-fonts.code-new-roman
     bat
     lsd
+    awscli2
 
     # LANG
     nodejs_20
