@@ -21,6 +21,7 @@
       z = "zellij";
       za = "zellij attach";
       cat = "bat";
+      ls = "lsd";
     };
     history.size = 10000;
   };
