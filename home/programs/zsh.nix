@@ -20,6 +20,7 @@
       y = "yazi";
       z = "zellij";
       za = "zellij attach";
+      zs = "zellij -s";
       cat = "bat";
       ls = "lsd";
     };
