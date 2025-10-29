@@ -32,7 +32,10 @@
     typescript-language-server
     nixd
     nil
+
+    #Note taking
     marksman
     markdown-oxide
+    zk
   ];
 }
