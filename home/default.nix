@@ -11,6 +11,7 @@
     ./programs/bash.nix
     ./programs/zellij.nix
     ./programs/starship.nix
+    ./programs/writing
     ./packages.nix
     ./env.nix
   ];
