@@ -23,6 +23,8 @@
       zs = "zellij -s";
       cat = "bat";
       ls = "lsd";
+      ff = "aerospace list-windows --all | fzf --bind 'enter:execute-silent(echo {1} | xargs aerospace focus --window-id)+abort'";
+
     };
     history.size = 10000;
   };
